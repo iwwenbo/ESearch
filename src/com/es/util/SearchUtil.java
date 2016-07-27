@@ -12,19 +12,12 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
  * 搜索引擎工作类：用于Elasticsearch获取连接
  */
 public class SearchUtil {
-
-    /**
-     * 创建Client的方法：支持多个地址
-     * @param clusterName 参数,集群
-     * @param url 地址
-     * @return client
-     */
     public static Client getElasticClient(String clusterName, String url) {
         //对配置文件中提供的多个url进行拆分
         String[] brokers = url.split(",");
         ImmutableSettings.settingsBuilder().build();
         Settings settings = ImmutableSettings.settingsBuilder()
-                .put("iwwenbo-es", clusterName)
+                .put("cluster.name", clusterName)
                 .build();
         //根据settings创建clent实例
         TransportClient client = new TransportClient(settings);
