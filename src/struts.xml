@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+          
+<struts>
+    <!-- 配置为开发模式，一旦文件改动，不需要重启，会立即生效 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名设置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <package name="es" namespace="/" extends="struts-default">
+        <!-- 整合框架后class可以直接写bean名称 -->
+        <action name="doSearchPage" class="rxSearchAction" method="doSearchPage">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="doSearch" class="rxSearchAction" method="doSearch">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+</struts>
