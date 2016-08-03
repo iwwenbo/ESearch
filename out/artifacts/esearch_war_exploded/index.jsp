@@ -47,7 +47,7 @@
   <div class="container">
       <div style="height:550px;">
           <div class="text-center hidden-xs">
-              <h1 style="padding-top:100px;">ElasticSearch</h1>
+              <h1 style="padding-top:100px;">Google</h1>
           </div>
           <div class="col-md-8 col-md-offset-2">
               <form id="submitForm">

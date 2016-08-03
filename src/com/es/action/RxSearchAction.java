@@ -2,6 +2,7 @@ package com.es.action;
 
 import com.es.service.IRxSearchService;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -15,13 +16,13 @@ public class RxSearchAction extends ActionSupport {
     //搜索关键字
     private String keyWords;
 
+    @Autowired
     private IRxSearchService rxSearchService;
 
     /**
      * 跳转到搜索页面
      */
     public  String doSearchPage(){
-        System.out.println("正在进行搜索。。。");
         return "success";
     }
 
@@ -30,7 +31,7 @@ public class RxSearchAction extends ActionSupport {
      * @return
      */
     public String doSearch(){
-        System.out.println(keyWords+"----------搜索内容");
+        rxSearchService.doSearchByKeyWords(keyWords);
         return "success";
     }
 
