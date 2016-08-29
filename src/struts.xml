@@ -8,13 +8,13 @@
     <constant name="struts.devMode" value="true" />
     <!-- 把扩展名设置为action -->
     <constant name="struts.action.extension" value="action" />
-    <package name="es" namespace="/" extends="struts-default">
+    <package name="es" namespace="/" extends="json-default">
         <!-- 整合框架后class可以直接写bean名称 -->
         <action name="doSearchPage" class="rxSearchAction" method="doSearchPage">
             <result name="success">/index.jsp</result>
         </action>
         <action name="doSearch" class="rxSearchAction" method="doSearch">
-            <result name="success">/index.jsp</result>
+            <result name="success">/WEB-INF/es/pages/searchResult.jsp</result>
         </action>
     </package>
 </struts>

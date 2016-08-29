@@ -13,6 +13,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
  */
 public class SearchUtil {
     public static Client getElasticClient(String clusterName, String url) {
+        System.out.println("创建搜索引擎连接");
         //对配置文件中提供的多个url进行拆分
         String[] brokers = url.split(",");
         ImmutableSettings.settingsBuilder().build();

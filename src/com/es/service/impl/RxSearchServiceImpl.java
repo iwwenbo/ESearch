@@ -21,10 +21,9 @@ import java.util.List;
  */
 @Service
 public class RxSearchServiceImpl  implements IRxSearchService{
-    @Autowired
     private Client searchUtil;
     //默认索引
-    private static final String DEFAULT_SEARCH_INDEX="es-index";
+    private static final String DEFAULT_SEARCH_TYPE="hhtwsyyt-fwqq";
     QueryBuildUtil queryBuildUtil = new QueryBuildUtil();
 
     /**
@@ -34,11 +33,12 @@ public class RxSearchServiceImpl  implements IRxSearchService{
     public List<String> doSearchByKeyWords(String keyWords) {
         System.out.println("正在对关键字："+keyWords+" 进行搜索");
         System.out.println(searchUtil);
-        searchUtil = SearchUtil.getElasticClient("es-cluster","192.168.1.100:9300");
+        //searchUtil = SearchUtil.getElasticClient("es-cluster","172.21.142.162:9300");
         //根据查询字符串构建QueryStringQueryBuilder，这里只是根据关键字到搜索引擎的content字段进行匹配查询
         QueryStringQueryBuilder stringQueryBuilder = queryBuildUtil.getQueryStringQueryBuilder(keyWords,"content");
+        System.out.println(stringQueryBuilder.toString()+"--000");
         //根据stringQueryBuilder进行查询
-        SearchRequestBuilder searchRequestBuilder = searchUtil.prepareSearch().setTypes("fulltext").setQuery(stringQueryBuilder);
+        SearchRequestBuilder searchRequestBuilder = searchUtil.prepareSearch().setTypes(DEFAULT_SEARCH_TYPE).setQuery(stringQueryBuilder);
         //打印一下构建的查询条件
         System.out.println(searchRequestBuilder.toString());
         //根据搜索的条件获得响应的searchResponse
@@ -58,4 +58,12 @@ public class RxSearchServiceImpl  implements IRxSearchService{
         return returnList;
     }
 
+
+    public Client getSearchUtil() {
+        return searchUtil;
+    }
+
+    public void setSearchUtil(Client searchUtil) {
+        this.searchUtil = searchUtil;
+    }
 }

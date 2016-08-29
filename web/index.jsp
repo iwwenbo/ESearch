@@ -9,6 +9,17 @@
     <title>ESearch</title>
     <script type="text/javascript" src="resources/js/jquery-1.12.2.min.js"></script>
     <script>
+        function show_error(xhr){
+
+            var iWidth=800;
+            var iHeight=600;
+            var iTop = (window.screen.availHeight-30-iHeight)/2;
+            var iLeft = (window.screen.availWidth-10-iWidth)/2;
+            window.open('','','top='+iTop+',iLeft='+iLeft+',width='+iWidth+',height='+iHeight
+                    +'toolbar=no, scrollbars=yes,menubar=no,location=no, resizable=yes').document.write(xhr.responseText);
+
+
+        }
         //搜索函数
         function dosearch(){
             var url ="<s:url action='doSearch.action'/>";

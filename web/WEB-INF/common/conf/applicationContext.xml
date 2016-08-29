@@ -4,13 +4,15 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="true">
+
     <bean id="rxSearchService" class="com.es.service.impl.RxSearchServiceImpl" scope="prototype">
+        <property name="searchUtil" ref="searchUtil"></property>
     </bean>
     <bean id="rxSearchAction" class="com.es.action.RxSearchAction" scope="prototype">
         <property name="rxSearchService" ref="rxSearchService"></property>
     </bean>
     <bean id="searchUtil" class="com.es.util.SearchUtil" factory-method="getElasticClient">
         <constructor-arg index="0" value="es-cluster"></constructor-arg>
-        <constructor-arg index="1" value="192.168.1.100:9300"></constructor-arg>
+        <constructor-arg index="1" value="172.21.142.162:9300"></constructor-arg>
     </bean>
 </beans>
