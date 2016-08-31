@@ -32,11 +32,8 @@ public class RxSearchServiceImpl  implements IRxSearchService{
      */
     public List<String> doSearchByKeyWords(String keyWords) {
         System.out.println("正在对关键字："+keyWords+" 进行搜索");
-        System.out.println(searchUtil);
-        //searchUtil = SearchUtil.getElasticClient("es-cluster","172.21.142.162:9300");
         //根据查询字符串构建QueryStringQueryBuilder，这里只是根据关键字到搜索引擎的content字段进行匹配查询
         QueryStringQueryBuilder stringQueryBuilder = queryBuildUtil.getQueryStringQueryBuilder(keyWords,"content");
-        System.out.println(stringQueryBuilder.toString()+"--000");
         //根据stringQueryBuilder进行查询
         SearchRequestBuilder searchRequestBuilder = searchUtil.prepareSearch().setTypes(DEFAULT_SEARCH_TYPE).setQuery(stringQueryBuilder);
         //打印一下构建的查询条件
@@ -47,7 +44,6 @@ public class RxSearchServiceImpl  implements IRxSearchService{
         SearchHit[] searchHits = hits.getHits();
         HashMap<String,Object> sourceMap = null;
         List<String> returnList = new ArrayList<>();
-        System.out.println(searchHits.length+"-----------length");
         if(searchHits.length>0){
             for (SearchHit hit:searchHits){
                 sourceMap = (HashMap<String,Object>)hit.getSource();
